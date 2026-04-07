@@ -1,0 +1,21 @@
+# Firebase サービスアカウントキー（絶対にコミットしない）
+*firebase*adminsdk*.json
+*.serviceaccount.json
+
+# 環境変数
+backend/.env
+frontend/.env.local
+frontend/.env*.local
+
+# 依存パッケージ
+node_modules/
+backend/node_modules/
+frontend/node_modules/
+
+# ビルド成果物
+frontend/.next/
+backend/dist/
+
+# その他
+.DS_Store
+Thumbs.db

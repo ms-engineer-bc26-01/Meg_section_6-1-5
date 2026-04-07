@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>名取めぐみ | Portfolio Preview</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  :root {
+    --primary: #2C4A3E;
+    --accent: #7CB9A0;
+    --light: #F5F0E8;
+    --white: #ffffff;
+    --gray-100: #f3f4f6;
+    --gray-200: #e5e7eb;
+    --gray-500: #6b7280;
+    --gray-700: #374151;
+  }
+  body { font-family: 'Hiragino Kaku Gothic ProN', 'Meiryo', sans-serif; background: var(--light); color: var(--gray-700); }
+
+  /* ナビゲーション */
+  nav {
+    background: var(--primary);
+    color: white;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+  }
+  nav .logo { font-size: 18px; font-weight: 700; letter-spacing: 0.05em; }
+  nav .links { display: flex; gap: 28px; font-size: 14px; }
+  nav .links a { color: rgba(255,255,255,0.85); text-decoration: none; transition: color 0.2s; }
+  nav .links a:hover { color: var(--accent); }
+
+  main { max-width: 860px; margin: 0 auto; padding: 40px 20px 80px; }
+
+  /* セクションタイトル */
+  .section-title {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--primary);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 8px;
+    margin-bottom: 28px;
+    letter-spacing: 0.04em;
+  }
+  section { margin-bottom: 64px; }
+
+  /* プロフィール */
+  .profile-wrap { display: flex; gap: 36px; align-items: flex-start; flex-wrap: wrap; }
+  .profile-img-wrap { flex-shrink: 0; }
+  .profile-img {
+    width: 148px; height: 148px;
+    border-radius: 50%;
+    border: 4px solid var(--accent);
+    box-shadow: 0 4px 16px rgba(44,74,62,0.18);
+    object-fit: cover;
+    background: #cde8df;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 56px;
+    overflow: hidden;
+  }
+  .profile-img img { width: 100%; height: 100%; object-fit: cover; border-radius: 50%; }
+  .profile-info { flex: 1; min-width: 240px; }
+  .profile-name { font-size: 30px; font-weight: 700; color: var(--primary); margin-bottom: 2px; }
+  .profile-name-en { font-size: 14px; color: var(--gray-500); margin-bottom: 18px; }
+  .profile-dl { display: grid; grid-template-columns: auto 1fr; gap: 6px 16px; font-size: 13px; margin-bottom: 20px; }
+  .profile-dl dt { color: var(--gray-500); font-weight: 600; }
+  .profile-dl dd { color: var(--gray-700); }
+  .profile-bio {
+    font-size: 13px; line-height: 1.9; color: var(--gray-700);
+    background: white; border-radius: 10px; padding: 16px 18px;
+    border: 1px solid var(--gray-200); box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  /* 実績 */
+  .achievement-card {
+    background: white; border-radius: 12px; padding: 20px 22px;
+    border: 1px solid var(--gray-200);
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+    margin-bottom: 16px;
+    transition: box-shadow 0.2s;
+  }
+  .achievement-card:hover { box-shadow: 0 4px 16px rgba(44,74,62,0.12); }
+  .achievement-company {
+    font-size: 14px; font-weight: 700; color: var(--primary);
+    display: flex; align-items: center; gap: 8px; margin-bottom: 12px;
+  }
+  .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .achievement-roles { list-style: none; font-size: 13px; color: var(--gray-700); margin-left: 16px; }
+  .achievement-roles li { display: flex; align-items: flex-start; gap: 6px; margin-bottom: 4px; }
+  .achievement-roles li::before { content: "›"; color: var(--accent); font-size: 15px; line-height: 1.4; }
+  .achievement-note { font-size: 12px; color: var(--gray-500); font-style: italic; border-top: 1px solid var(--gray-200); padding-top: 10px; margin-top: 12px; }
+
+  /* スキル */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  @media (max-width: 600px) { .skills-grid { grid-template-columns: 1fr; } }
+  .skill-card { background: white; border-radius: 12px; padding: 18px; border: 1px solid var(--gray-200); box-shadow: 0 1px 4px rgba(0,0,0,0.05); }
+  .skill-cat { font-size: 11px; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 0.1em; border-bottom: 1.5px solid var(--accent); padding-bottom: 8px; margin-bottom: 12px; }
+  .skill-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+  .skill-tag { font-size: 11px; background: var(--light); color: var(--gray-700); padding: 4px 9px; border-radius: 20px; border: 1px solid var(--gray-200); }
+
+  /* コンタクトCTA */
+  .contact-cta { text-align: center; padding: 48px 0; }
+  .contact-cta h2 { font-size: 22px; font-weight: 700; color: var(--primary); margin-bottom: 10px; }
+  .contact-cta p { font-size: 14px; color: var(--gray-500); margin-bottom: 24px; }
+  .btn-primary {
+    display: inline-block;
+    background: var(--primary); color: white;
+    padding: 13px 36px; border-radius: 8px;
+    font-size: 14px; font-weight: 600; text-decoration: none;
+    transition: opacity 0.2s;
+  }
+  .btn-primary:hover { opacity: 0.88; }
+
+  /* フッター */
+  footer { background: var(--primary); color: white; text-align: center; padding: 24px; font-size: 13px; opacity: 0.9; }
+
+  /* ページ切り替えタブ（プレビュー用） */
+  .page-tabs {
+    display: flex; gap: 0; margin-bottom: 0;
+    background: #e8f0ee; border-radius: 10px 10px 0 0;
+    overflow: hidden;
+  }
+  .page-tab {
+    flex: 1; padding: 10px 0; text-align: center; font-size: 13px; font-weight: 600;
+    cursor: pointer; color: var(--gray-500); border: none; background: transparent;
+    transition: background 0.15s, color 0.15s;
+  }
+  .page-tab.active { background: var(--primary); color: white; }
+
+  /* コンタクトページ */
+  .contact-form { background: white; border-radius: 12px; padding: 32px; border: 1px solid var(--gray-200); box-shadow: 0 1px 4px rgba(0,0,0,0.06); }
+  .form-group { margin-bottom: 20px; }
+  .form-label { display: block; font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 6px; }
+  .form-label span { color: #ef4444; margin-left: 2px; }
+  .form-input, .form-textarea {
+    width: 100%; padding: 10px 14px; font-size: 14px;
+    border: 1px solid var(--gray-200); border-radius: 8px; outline: none;
+    font-family: inherit; color: var(--gray-700);
+    background: #fafafa;
+  }
+  .form-textarea { height: 130px; resize: none; }
+
+  /* 管理画面 */
+  .admin-header { background: var(--primary); color: white; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .admin-header span { font-weight: 700; font-size: 16px; }
+  .admin-header a { font-size: 13px; opacity: 0.75; color: white; text-decoration: none; }
+  .admin-tabs { display: flex; border-bottom: 1px solid var(--gray-200); background: white; padding: 0 24px; }
+  .admin-tab { padding: 14px 18px; font-size: 13px; font-weight: 600; color: var(--gray-500); cursor: pointer; border-bottom: 2.5px solid transparent; }
+  .admin-tab.active { color: var(--primary); border-bottom-color: var(--primary); }
+  .admin-body { padding: 28px 24px; max-width: 720px; margin: 0 auto; }
+  .admin-card { background: white; border-radius: 12px; padding: 26px; border: 1px solid var(--gray-200); }
+  .admin-card h3 { font-size: 15px; font-weight: 700; color: var(--primary); margin-bottom: 22px; }
+  .admin-img-row { display: flex; align-items: center; gap: 18px; margin-bottom: 22px; }
+  .admin-avatar { width: 70px; height: 70px; border-radius: 50%; border: 2px solid var(--accent); background: #cde8df; display: flex; align-items: center; justify-content: center; font-size: 28px; overflow: hidden; }
+  .admin-avatar img { width: 100%; height: 100%; object-fit: cover; }
+  .btn-secondary { display: inline-block; border: 1.5px solid var(--primary); color: var(--primary); padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600; cursor: pointer; background: transparent; }
+  .admin-field { margin-bottom: 16px; }
+  .admin-label { font-size: 13px; font-weight: 600; color: var(--gray-700); margin-bottom: 5px; }
+  .admin-input { width: 100%; padding: 9px 12px; font-size: 13px; border: 1px solid var(--gray-200); border-radius: 7px; background: #fafafa; font-family: inherit; }
+  .admin-textarea { width: 100%; padding: 9px 12px; font-size: 13px; border: 1px solid var(--gray-200); border-radius: 7px; background: #fafafa; font-family: inherit; height: 100px; resize: none; }
+
+  /* ページ表示制御 */
+  .page { display: none; }
+  .page.active { display: block; }
+</style>
+</head>
+<body>
+
+<!-- ページ切り替えUI -->
+<div style="background:#2C4A3E; padding:8px 20px; display:flex; gap:0; justify-content:center;">
+  <button class="page-tab active" onclick="showPage('top')" id="tab-top">🏠 トップページ</button>
+  <button class="page-tab" onclick="showPage('contact')" id="tab-contact">✉ お問い合わせ</button>
+  <button class="page-tab" onclick="showPage('admin')" id="tab-admin">🔒 管理画面</button>
+</div>
+
+<!-- ========== TOP PAGE ========== -->
+<div class="page active" id="page-top">
+  <nav>
+    <div class="logo">名取めぐみ</div>
+    <div class="links">
+      <a href="#">プロフィール</a>
+      <a href="#">実績</a>
+      <a href="#">スキル</a>
+      <a href="#" onclick="showPage('contact');return false;">お問い合わせ</a>
+    </div>
+  </nav>
+  <main>
+
+    <!-- プロフィール -->
+    <section>
+      <h2 class="section-title">Profile</h2>
+      <div class="profile-wrap">
+        <div class="profile-img-wrap">
+          <div class="profile-img">
+            <img src="profile.jpg" alt="名取めぐみ" onerror="this.style.display='none';this.parentNode.innerHTML='👤';">
+          </div>
+        </div>
+        <div class="profile-info">
+          <div class="profile-name">名取めぐみ</div>
+          <div class="profile-name-en">Megumi Natori</div>
+          <dl class="profile-dl">
+            <dt>生年月日</dt><dd>1976年2月16日</dd>
+            <dt>出身地</dt><dd>山梨県北杜市</dd>
+          </dl>
+          <div class="profile-bio">
+            年子の姉・6学年差の双子の弟の4人姉弟の中で唯一、血液型/生まれた場所/高校/身長が全く異なる。<br>
+            病弱で反抗期も激しく、母親から問題児扱いされる10代を過ごす。<br>
+            学費を自力で賄うため無理な生活を送り倒れる → 危篤 → 休学。<br>
+            復学直前に家業の工場が全焼し、東京から帰郷。就職氷河期の中で社会人デビュー。
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 実績 -->
+    <section>
+      <h2 class="section-title">Achievements</h2>
+      <div class="achievement-card">
+        <div class="achievement-company"><span class="dot"></span>リゾートホテル（現 星野リゾート リゾナーレ八ヶ岳）</div>
+        <ul class="achievement-roles">
+          <li>電話交換手</li>
+          <li>フロントバック（団体予約担当）</li>
+          <li>会議・イベント対応</li>
+          <li>レストラン・社員食堂（調理・接客補助）</li>
+        </ul>
+        <div class="achievement-note">部門を横断してマルチに対応。</div>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-company"><span class="dot"></span>精密部品製造・加工業</div>
+        <ul class="achievement-roles">
+          <li>部品加工・仕上げ</li>
+          <li>図面読解・検品</li>
+          <li>小型旋盤操作</li>
+        </ul>
+        <div class="achievement-note">家業で後継候補として勤務経験あり。</div>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-company"><span class="dot"></span>療養型医療施設</div>
+        <ul class="achievement-roles">
+          <li>看護助手（食事・入浴補助）</li>
+          <li>リハビリ助手（送迎・訓練補助・機器対応）</li>
+          <li>受付当直対応</li>
+        </ul>
+        <div class="achievement-note">患者の半数を単独対応するなど高い責任を担う。</div>
+      </div>
+      <div class="achievement-card">
+        <div class="achievement-company"><span class="dot"></span>半導体関連企業（IT部門）</div>
+        <ul class="achievement-roles">
+          <li>庶務代表（山梨エリア）</li>
+          <li>基幹システム運用サポート</li>
+          <li>経理・契約事務</li>
+          <li>Accessによるデータ処理</li>
+          <li>3D CAD教育システム開発サポート</li>
+          <li>情報セキュリティ（ISO内部監査）</li>
+        </ul>
+        <div class="achievement-note">現在は4部署の庶務統括＋交通安全委員を兼務。</div>
+      </div>
+    </section>
+
+    <!-- スキル -->
+    <section>
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-cat">業務スキル</div>
+          <div class="skill-tags">
+            <span class="skill-tag">接客・電話応対</span>
+            <span class="skill-tag">小型旋盤操作</span>
+            <span class="skill-tag">図面読解（μ単位）</span>
+            <span class="skill-tag">検査機器操作</span>
+            <span class="skill-tag">3D CAD / PowerBI</span>
+            <span class="skill-tag">Word / Excel / Access</span>
+            <span class="skill-tag">経理・契約業務</span>
+            <span class="skill-tag">情報セキュリティ</span>
+            <span class="skill-tag">医療・リハビリ知識</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cat">その他スキル</div>
+          <div class="skill-tags">
+            <span class="skill-tag">栄養知識</span>
+            <span class="skill-tag">ピアノ・打楽器・サックス</span>
+            <span class="skill-tag">アカペラ編曲・譜面作成</span>
+            <span class="skill-tag">英語対応（通訳・翻訳）</span>
+          </div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-cat">資格</div>
+          <div class="skill-tags">
+            <span class="skill-tag">普通自動車免許（AT限定）</span>
+            <span class="skill-tag">書道初段</span>
+            <span class="skill-tag">実用英語技能検定2級</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- コンタクトCTA -->
+    <div class="contact-cta">
+      <h2>お問い合わせ</h2>
+      <p>お仕事のご依頼・ご相談はお気軽にどうぞ。</p>
+      <a href="#" class="btn-primary" onclick="showPage('contact');return false;">お問い合わせフォームへ</a>
+    </div>
+
+  </main>
+  <footer>© 2025 Megumi Natori. All rights reserved.</footer>
+</div>
+
+<!-- ========== CONTACT PAGE ========== -->
+<div class="page" id="page-contact">
+  <nav>
+    <div class="logo">名取めぐみ</div>
+    <div class="links">
+      <a href="#" onclick="showPage('top');return false;">← トップに戻る</a>
+    </div>
+  </nav>
+  <main style="max-width:600px;">
+    <h2 class="section-title">Contact</h2>
+    <p style="font-size:13px;color:#6b7280;margin-bottom:28px;">お仕事のご依頼・ご質問はこちらのフォームよりお気軽にお送りください。確認後、メールにてご連絡いたします。</p>
+    <div class="contact-form">
+      <div class="form-group">
+        <label class="form-label">お名前 <span>*</span></label>
+        <input class="form-input" type="text" placeholder="山田 太郎" value="">
+      </div>
+      <div class="form-group">
+        <label class="form-label">メールアドレス <span>*</span></label>
+        <input class="form-input" type="email" placeholder="example@email.com">
+      </div>
+      <div class="form-group">
+        <label class="form-label">件名 <span>*</span></label>
+        <input class="form-input" type="text" placeholder="お仕事のご依頼">
+      </div>
+      <div class="form-group">
+        <label class="form-label">メッセージ <span>*</span></label>
+        <textarea class="form-textarea" placeholder="ご用件をご記入ください..."></textarea>
+      </div>
+      <button class="btn-primary" style="width:100%;border:none;cursor:pointer;font-size:14px;padding:13px;" onclick="alert('✓ メッセージを送信しました！（プレビュー）')">送信する</button>
+    </div>
+  </main>
+  <footer>© 2025 Megumi Natori. All rights reserved.</footer>
+</div>
+
+<!-- ========== ADMIN PAGE ========== -->
+<div class="page" id="page-admin">
+  <div class="admin-header">
+    <span>管理画面</span>
+    <a href="#" onclick="showPage('top');return false;">ログアウト</a>
+  </div>
+  <div class="admin-tabs">
+    <div class="admin-tab active">プロフィール</div>
+    <div class="admin-tab">実績</div>
+    <div class="admin-tab">スキル</div>
+  </div>
+  <div class="admin-body">
+    <div class="admin-card">
+      <h3>プロフィール編集</h3>
+      <div class="admin-img-row">
+        <div class="admin-avatar">
+          <img src="profile.jpg" alt="" onerror="this.style.display='none';this.parentNode.innerHTML='👤';">
+        </div>
+        <button class="btn-secondary">画像を変更</button>
+      </div>
+      <div class="admin-field">
+        <div class="admin-label">名前（日本語）</div>
+        <input class="admin-input" value="名取めぐみ">
+      </div>
+      <div class="admin-field">
+        <div class="admin-label">名前（英語）</div>
+        <input class="admin-input" value="Megumi Natori">
+      </div>
+      <div class="admin-field">
+        <div class="admin-label">生年月日</div>
+        <input class="admin-input" value="1976年2月16日">
+      </div>
+      <div class="admin-field">
+        <div class="admin-label">出身地</div>
+        <input class="admin-input" value="山梨県北杜市">
+      </div>
+      <div class="admin-field">
+        <div class="admin-label">自己紹介文</div>
+        <textarea class="admin-textarea">年子の姉・6学年差の双子の弟の4人姉弟の中で唯一...</textarea>
+      </div>
+      <button class="btn-primary" style="border:none;cursor:pointer;" onclick="alert('✓ 保存しました！（プレビュー）')">保存する</button>
+    </div>
+  </div>
+</div>
+
+<script>
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  document.querySelectorAll('.page-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('tab-' + id)?.classList.add('active');
+  window.scrollTo(0,0);
+}
+</script>
+</body>
+</html>

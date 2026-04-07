@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(cmd.exe /c \"cd /d \"\"C:\\\\Users\\\\b1ess\\\\OneDrive\\\\Ms.Engineer\\\\section課題_試作\\\\session6-1~5_claude\\\\backend\"\" && npm install nodemailer && npm install --save-dev @types/nodemailer\")",
+      "Bash(cmd.exe /c \"npm --version\")",
+      "Bash(powershell.exe -Command \"npm --version\")",
+      "Bash(powershell.exe -Command \"Get-Command node -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source; Get-Command npm -ErrorAction SilentlyContinue | Select-Object -ExpandProperty Source\")",
+      "Bash(powershell.exe -Command \"Get-ChildItem ''C:\\\\Program Files\\\\nodejs'' -ErrorAction SilentlyContinue; Get-ChildItem ''C:\\\\Users\\\\b1ess\\\\AppData\\\\Local\\\\nvs'' -ErrorAction SilentlyContinue; Get-ChildItem ''C:\\\\Users\\\\b1ess\\\\AppData\\\\Roaming\\\\npm'' -ErrorAction SilentlyContinue\")",
+      "Bash(powershell.exe -NoProfile -Command \":*)",
+      "Bash(powershell.exe -NoProfile -Command \"Get-ChildItem ''''C:\\\\Program Files\\\\nodejs'''' 2>&1\")",
+      "Bash(powershell.exe -NoProfile -Command \"[System.Environment]::GetEnvironmentVariable\\(''''PATH'''',''''Machine''''\\)\")"
+    ]
+  }
+}

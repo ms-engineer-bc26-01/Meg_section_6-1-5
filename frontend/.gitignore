@@ -1,0 +1,13 @@
+# 環境変数（秘密情報）
+.env.local
+.env*.local
+
+# 依存パッケージ
+node_modules/
+
+# ビルド成果物
+.next/
+out/
+
+# Next.js キャッシュ
+.next/cache/
