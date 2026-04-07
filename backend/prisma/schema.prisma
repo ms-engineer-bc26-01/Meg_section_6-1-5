@@ -1,0 +1,56 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+/// プロフィール情報（シングルトン: id=1固定）
+model Profile {
+  id          Int      @id @default(autoincrement())
+  name        String   @default("名取めぐみ")
+  nameEn      String   @default("Megumi Natori")
+  birthDate   String   @default("1976年2月16日")
+  birthPlace  String   @default("山梨県北杜市")
+  bio         String   @default("") @db.Text
+  imageData   Bytes?   // 画像をBLOBとしてDBに保存
+  imageMime   String?  // 画像のMIMEタイプ（例: image/jpeg）
+  updatedAt   DateTime @updatedAt
+}
+
+/// 実績
+model Achievement {
+  id        String   @id @default(cuid())
+  company   String
+  roles     String[] // PostgreSQL配列型
+  note      String?
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// スキルカテゴリ
+model SkillCategory {
+  id        String   @id @default(cuid())
+  category  String
+  items     String[] // PostgreSQL配列型
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+/// お問い合わせ
+model Contact {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String
+  message   String   @db.Text
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}

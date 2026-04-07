@@ -1,0 +1,17 @@
+# 環境変数（秘密情報）
+.env
+
+# 依存パッケージ
+node_modules/
+
+# ビルド成果物
+dist/
+
+# Prisma
+prisma/migrations/
+
+# Firebase サービスアカウントJSON
+*.json
+!package.json
+!package-lock.json
+!tsconfig.json

@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-primary: #2C4A3E;
+  --color-accent: #7CB9A0;
+  --color-light: #F5F0E8;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-light);
+  color: var(--color-dark);
+}
+
+@layer components {
+  .section-title {
+    @apply text-2xl font-serif font-bold text-primary border-b-2 border-accent pb-2 mb-6;
+  }
+  .btn-primary {
+    @apply bg-primary text-white px-6 py-3 rounded-md hover:bg-opacity-90 transition-all duration-200 font-medium;
+  }
+  .btn-secondary {
+    @apply border border-primary text-primary px-6 py-3 rounded-md hover:bg-primary hover:text-white transition-all duration-200 font-medium;
+  }
+  .card {
+    @apply bg-white rounded-lg shadow-sm p-6 border border-gray-100;
+  }
+}
