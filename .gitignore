@@ -21,3 +21,27 @@ rad.json
 #Test results file
 TestResults.xml
 .env
+
+### 追加: このプロジェクト用 ###
+# 環境変数（秘密情報）
+*.env
+.env.*
+.env.local
+.env*.local
+
+# Firebase サービスアカウントキー（絶対にコミットしない）
+*firebase*adminsdk*.json
+
+# 依存パッケージ
+node_modules/
+
+# Next.js ビルド成果物
+.next/
+out/
+
+# バックエンド ビルド成果物
+dist/
+
+# その他
+.DS_Store
+Thumbs.db
